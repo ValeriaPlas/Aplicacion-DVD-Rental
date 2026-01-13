@@ -1,0 +1,13 @@
+# ===== Rust =====
+backend_dvd/target/
+
+# ===== Python =====
+__pycache__/
+*.pyc
+
+# ===== Entorno =====
+.env
+
+# ===== Sistema =====
+.DS_Store
+Thumbs.db

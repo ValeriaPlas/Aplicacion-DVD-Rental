@@ -1,0 +1,31 @@
+name: Rust Backend CI
+
+on: [push]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        
+    - name: Build Backend
+      run: |
+        cd backend_dvd
+        cargo build --verbose
+        
+    - name: Run Backend in Background
+      run: |
+        cd backend_dvd
+        cargo run &
+        sleep 5 # Esperar a que inicie
+        
+    - name: Execute Curl Tests
+      run: |
+        chmod +x test_api.sh
+        ./test_api.sh
